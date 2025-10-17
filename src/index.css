@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "gilroy", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  font-weight: 600;
+}
+
+body{
+  overflow-x: hidden;
+}
+
