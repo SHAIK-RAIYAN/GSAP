@@ -23,7 +23,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/two-boxes" element={<TwoboxesAnimate />} />
         <Route path="/circle-animate" element={<CircleAnimate />} />
-        <Route path="/three" element={<Three />} />
+        <Route path="/three-yoyo" element={<Three />} />
         <Route path="/four-nav-bar" element={<FourNavBar />} />
         <Route path="/five-scroll-trigger" element={<FiveScrollTrigger />} />
         <Route path="/six-text-slide" element={<SixTextSlide />} />

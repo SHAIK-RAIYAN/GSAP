@@ -2,7 +2,7 @@ import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 import { gsap } from "gsap";
 
-function Three() {
+function ThreeYo_yo() {
   const square = useRef();
 
   useGSAP(() => {
@@ -32,4 +32,4 @@ function Three() {
   );
 }
 
-export default Three;
+export default ThreeYo_yo;

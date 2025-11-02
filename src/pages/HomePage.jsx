@@ -2,62 +2,62 @@ import { Link } from "react-router-dom";
 
 const animations = [
   {
-    name: "Two Boxes Animate",
+    name: "Boxes Animate",
     path: "/two-boxes",
-    desc: "Simple state-based box animation.",
+    desc: "Simple 2 boxes animation.",
   },
   {
     name: "Circle Animate",
     path: "/circle-animate",
-    desc: "Basic GSAP timeline animation.",
+    desc: "Click to animate Circle position.",
   },
   {
-    name: "Three",
-    path: "/three",
-    desc: "Exploring 3D transforms and effects.",
+    name: "Color and Yo-yo",
+    path: "/three-yoyo",
+    desc: "Color Changing and yo-yo effects.",
   },
   {
-    name: "Four Nav Bar",
+    name: "Nav Bar",
     path: "/four-nav-bar",
-    desc: "A responsive, animated navigation menu.",
+    desc: "A animated navigation menu.",
   },
   {
-    name: "Five Scroll Trigger",
+    name: "Scroll Trigger",
     path: "/five-scroll-trigger",
-    desc: "Animating elements on scroll position.",
+    desc: "Animating elements on scroll .",
   },
   {
-    name: "Six Text Slide",
+    name: "Text Slide",
     path: "/six-text-slide",
-    desc: "Creative text sliding and masking effects.",
+    desc: "Scroll page to text sliding effects.",
   },
   {
-    name: "Seven String",
+    name: "Hover String animate",
     path: "/seven-string",
     desc: "SVG string and path animations.",
   },
   {
-    name: "Eight Custom Cursor",
+    name: "Custom Cursor",
     path: "/eight-custom-cursor",
     desc: "A custom cursor that interacts with elements.",
   },
   {
-    name: "Nine Cursor Change",
+    name: "Cursor Change",
     path: "/nine-cursor-change",
     desc: "Changing cursor style on hover.",
   },
   {
-    name: "Ten Mask Cursor",
+    name: "Mask Cursor",
     path: "/ten-mask-cursor",
     desc: "Using the cursor to reveal content.",
   },
   {
-    name: "Eleven Side Bar",
+    name: "Side Bar",
     path: "/eleven-side-bar",
-    desc: "A modern, animated slide-out sidebar.",
+    desc: "A animated slide-out sidebar.",
   },
   {
-    name: "Twelve Text Appear",
+    name: "Text Appear",
     path: "/twelve-text-appear",
     desc: "Staggered text character appearance.",
   },
@@ -72,7 +72,7 @@ const HomePage = () => {
         </h1>
         <p className="text-xl md:text-2xl text-gray-400 mt-6 mb-16">
           A collection of animations and effects built with GSAP and React.
-          Select an example to see it in action.
+          Select an animation to see it in action.
         </p>
       </div>
 
