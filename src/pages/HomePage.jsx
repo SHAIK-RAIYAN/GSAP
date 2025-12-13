@@ -1,96 +1,124 @@
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLayoutEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import cards from "../data/cards";
+import Footer from "../Layout/Footer";
+import Header from "../Layout/Header";
 
-const animations = [
-  {
-    name: "Boxes Animate",
-    path: "/two-boxes",
-    desc: "Simple 2 boxes animation.",
-  },
-  {
-    name: "Circle Animate",
-    path: "/circle-animate",
-    desc: "Click to animate Circle position.",
-  },
-  {
-    name: "Color and Yo-yo",
-    path: "/three-yoyo",
-    desc: "Color Changing and yo-yo effects.",
-  },
-  {
-    name: "Nav Bar",
-    path: "/four-nav-bar",
-    desc: "A animated navigation menu.",
-  },
-  {
-    name: "Scroll Trigger",
-    path: "/five-scroll-trigger",
-    desc: "Animating elements on scroll .",
-  },
-  {
-    name: "Text Slide",
-    path: "/six-text-slide",
-    desc: "Scroll page to text sliding effects.",
-  },
-  {
-    name: "Hover String animate",
-    path: "/seven-string",
-    desc: "SVG string and path animations.",
-  },
-  {
-    name: "Custom Cursor",
-    path: "/eight-custom-cursor",
-    desc: "A custom cursor that interacts with elements.",
-  },
-  {
-    name: "Cursor Change",
-    path: "/nine-cursor-change",
-    desc: "Changing cursor style on hover.",
-  },
-  {
-    name: "Mask Cursor",
-    path: "/ten-mask-cursor",
-    desc: "Using the cursor to reveal content.",
-  },
-  {
-    name: "Side Bar",
-    path: "/eleven-side-bar",
-    desc: "A animated slide-out sidebar.",
-  },
-  {
-    name: "Text Appear",
-    path: "/twelve-text-appear",
-    desc: "Staggered text character appearance.",
-  },
-];
-
+gsap.registerPlugin(ScrollTrigger);
 const HomePage = () => {
+  const containerRef = useRef(null);
+  const wrapperRef = useRef(null);
+  const cardsRef = useRef([]);
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      const wrapper = wrapperRef.current;
+      //Calculate how far we need to scroll. width of cards + width of screen (to push it fully off-screen)
+      const totalScroll = wrapper.scrollWidth + window.innerWidth;
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top top", //Start this animation when the TOP of the container hits the TOP of the viewport
+          end: `+=${totalScroll}`,
+          scrub: 1,
+          pin: true,
+          invalidateOnRefresh: true, //If the browser resizes (refreshes), run my functional values again from scratch
+        },
+      });
+
+      gsap.set(wrapper, { x: window.innerWidth }); // initial position- outside screen width
+
+      tl.to(wrapper, {
+        x: -totalScroll,
+        ease: "none",
+        // The Arc Logic
+        onUpdate: () => {
+          //onUpdate runs on every single frame
+          const centerX = window.innerWidth / 2;
+          cardsRef.current.forEach((card) => {
+            if (!card) return;
+
+            const rect = card.getBoundingClientRect(); // we get card exact position x,y, top,left...
+            const cardCenterX = rect.left + rect.width / 2; // Finds the exact horizontal center of the card in pixels
+
+            const cardDistanceFromScreenCenter = cardCenterX - centerX;
+            const abstractX =
+              cardDistanceFromScreenCenter / (window.innerWidth / 2);
+            /*
+            If the card is dead center: abstractX is 0.
+            If the card is on the far right edge: abstractX is 1.
+            If the card is on the far left edge: abstractX is -1.
+             */
+
+            const yPos = Math.pow(abstractX, 2) * 400; //card postion up/down by 400 px
+            // y = x^2 (A Parabola Eqn).
+            const rotation = abstractX * 25;
+
+            gsap.set(card, {
+              y: yPos,
+              rotation: rotation,
+            });
+          });
+        },
+      });
+    }, containerRef);
+
+    return () => ctx.revert(); // Cleanup
+  }, []);
+
   return (
-    <div className="container mx-auto px-6 py-10 ">
-      <div className="text-center max-w-3xl mx-auto">
-        <h1 className="text-5xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-white via-neutral-400 to-neutral-800">
-          GSAP Animations
-        </h1>
-        <p className="text-xl md:text-2xl text-gray-400 mt-6 mb-16">
-          A collection of animations and effects built with GSAP and React.
-          Select an animation to see it in action.
-        </p>
+    <div className="min-h-screen overflow-x-hidden bg-neutral-300 text-white">
+      <Header />
+      <div
+        ref={containerRef}
+        className="relative flex h-screen w-full flex-col justify-center overflow-hidden bg-neutral-300"
+      >
+        <div className="pointer-events-none absolute inset-0" />
+
+        <div className="absolute top-30 z-0 w-full text-center select-none">
+          <h2 className="font-serif text-7xl leading-none font-bold tracking-tighter text-neutral-600 md:text-[14rem]">
+            GALLERY
+          </h2>
+        </div>
+
+        <div
+          ref={wrapperRef}
+          className="flex w-max items-center gap-20 px-10 will-change-transform"
+        >
+          {cards.map((card, i) => (
+            <Link
+              to={card.path}
+              key={i}
+              ref={(el) => (cardsRef.current[i] = el)} // Push every DOM node into our cardRref array
+              className="relative block h-[400px] w-[350px] flex-shrink-0 rounded-3xl border border-neutral-500"
+            >
+              <div className="group relative h-full w-full overflow-hidden rounded-3xl bg-neutral-900/50 shadow-lg transition-all duration-300">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="font-serif text-[12rem] font-bold text-white/40 transition-all duration-500 select-none group-hover:scale-90">
+                    {card.name.charAt(0)}
+                  </span>
+                </div>
+
+                <div className="absolute bottom-4 left-0 flex w-full translate-y-2 transform flex-col justify-end p-6 transition-transform duration-500 ease-out group-hover:translate-y-0">
+                  <div className="flex items-center">
+                    <h2 className="mb-2 text-3xl font-bold text-white">
+                      {card.name}{" "}
+                    </h2>
+                  </div>
+                  <p className="line-clamp-3 text-sm font-medium text-pretty text-neutral-600">
+                    {card.desc}
+                  </p>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {animations.map((anim) => (
-          <Link
-            to={anim.path}
-            key={anim.path}
-            className="block p-6 border border-zinc-700/50 bg-zinc-900/50 rounded-lg shadow-lg 
-                       hover:bg-zinc-800/60 hover:border-neutral-50/50 hover:scale-[1.02]
-                       transition-all duration-300 ease-in-out">
-            <h3 className="text-2xl font-semibold text-neutral-200 mb-2">
-              {anim.name}
-            </h3>
-            <p className="text-gray-400">{anim.desc}</p>
-          </Link>
-        ))}
-      </div>
+      <Footer />
     </div>
   );
 };
