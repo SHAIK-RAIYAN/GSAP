@@ -13,7 +13,7 @@ function SixTextSlide() {
         scroller: "body",
         start: "top 0%",
         end: "top -200%",
-        scrub: 2,
+        scrub: 0.5,
         markers: true,
         pin: true,
       },
@@ -32,7 +32,11 @@ function SixTextSlide() {
         className="h-screen w-full  bg-zinc-900 text-[40vw] uppercase">
         <h1 ref={text}>Experiences</h1>
       </div>
-      <div id="page3" className="h-screen w-full bg-zinc-700"></div>
+      <div
+        id="page3"
+        className="h-screen flex justify-center items-center w-full bg-zinc-700">
+        how was the Experience 😁
+      </div>
     </div>
   );
 }

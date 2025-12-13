@@ -27,13 +27,12 @@ function TwelveTextAppear() {
     By default, <span> is display: inline, so y won’t move it vertically. */
 
   useEffect(() => {
-    // 1.Convert Text in to seperate letters adding span to each letter in h1
+    // Convert Text in to seperate letters
     breakText(h1Ref.current);
 
-    // 2.Gsap
     const spansFirst = h1Ref.current.querySelectorAll(".f");
     const spansLast = h1Ref.current.querySelectorAll(".l");
-    
+
     gsap.from(spansFirst, {
       y: 80,
       opacity: 0,

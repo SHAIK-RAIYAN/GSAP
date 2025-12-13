@@ -15,7 +15,7 @@ function TwoboxesAnimate() {
       rotateZ: -720,
       duration: 2,
       delay: 1,
-    })
+    });
     tl.to(box2Ref.current, {
       //box2
       x: 200,
@@ -27,16 +27,14 @@ function TwoboxesAnimate() {
 
   return (
     <div className=" h-screen w-full flex items-center justify-center ">
-      <div
+      <img
+        src="/cartoon.png"
         ref={box1Ref}
-        className="h-30 w-30 border-4 border-white bg-linear-to-br from-rose-400 to-rose-600 rounded-2xl flex justify-center items-center">
-        <h1>Hello</h1>
-      </div>
-      <div
+        className="h-40 w-40 flex justify-center items-center"></img>
+      <img
+        src="/cartoon.png"
         ref={box2Ref}
-        className="h-30 w-30 border-4 border-white bg-linear-to-br from-rose-400 to-rose-600 rounded-2xl flex justify-center items-center">
-        <h1>Hello</h1>
-      </div>
+        className="h-40 w-40 flex justify-center items-center"></img>
     </div>
   );
 }

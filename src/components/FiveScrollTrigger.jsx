@@ -54,12 +54,12 @@ function FiveScrollTrigger() {
         x: 500,
         delay: 0.5,
         duration: 2,
-        scrollTrigger: {
-          trigger: box3.current,
-          scroller: "body",
-          markers: true,
-          start: "top 80%",
-        },
+          scrollTrigger: {
+            trigger: box3.current,
+            scroller: "body",
+            markers: true,
+            start: "top 80%",
+          },
       }
     );
   });
@@ -74,15 +74,18 @@ function FiveScrollTrigger() {
           className="size-50 bg-linear-to-br from-rose-300 to-sky-300"></div>
       </div>
       <div
-        id="page3"
+        id="page2"
         className="h-screen w-screen bg-zinc-900 flex items-center justify-center">
-          <p>Scroll Trigger</p>
+        <p>Scroll Trigger</p>
         <div
           ref={box2}
-          className="size-50 text-2xl flex justify-center items-center bg-linear-to-br from-rose-300 to-sky-300"> scrub pin </div>
+          className="size-50 text-2xl flex justify-center items-center bg-linear-to-br from-rose-300 to-sky-300">
+          {" "}
+          scrub pin{" "}
+        </div>
       </div>
       <div
-        id="page2"
+        id="page3"
         className="h-screen w-screen bg-zinc-700 flex items-center justify-center">
         <div
           ref={box3}
