@@ -30,7 +30,7 @@ function TenMaskCursor({ mainRef }) {
   }, [mainRef, size]);
 
   return (
-    <div className="h-dvh">
+    <div className="h-dvh bg-black">
       <div
         ref={maskRef}
         id="mask"

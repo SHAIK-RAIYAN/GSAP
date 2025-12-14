@@ -26,32 +26,38 @@ function TwelveTextAppear() {
     
     By default, <span> is display: inline, so y won’t move it vertically. */
 
-  useEffect(() => {
-    // Convert Text in to seperate letters
-    breakText(h1Ref.current);
+  useEffect(
+    () => {
+      // Convert Text in to seperate letters
+      breakText(h1Ref.current);
 
-    const spansFirst = h1Ref.current.querySelectorAll(".f");
-    const spansLast = h1Ref.current.querySelectorAll(".l");
+      const spansFirst = h1Ref.current.querySelectorAll(".f");
+      const spansLast = h1Ref.current.querySelectorAll(".l");
 
-    gsap.from(spansFirst, {
-      y: 80,
-      opacity: 0,
-      delay: 0.2,
-      stagger: 0.1,
-      duration: 0.5,
-    });
-    gsap.from(spansLast, {
-      y: 80,
-      opacity: 0,
-      delay: 0.2,
-      stagger: -0.1,
-      duration: 0.5,
-    });
-  }, []);
+      gsap.from(spansFirst, {
+        y: 80,
+        opacity: 0,
+        delay: 0.8,
+        stagger: 0.1,
+        duration: 0.8,
+      });
+      gsap.from(
+        spansLast,
+        {
+          y: 80,
+          opacity: 0,
+          duration: 0.8,
+          stagger: -0.1,
+        },
+        "<", // Run at start of previous animation
+      );
+    },
+    { scope: h1Ref }, // eslint-disable-line react-hooks/exhaustive-deps
+  );
 
   return (
-    <div className="h-screen flex justify-center items-center">
-      <h1 ref={h1Ref} className="text-8xl overflow-hidden p-5">
+    <div className="flex h-screen items-center justify-center">
+      <h1 ref={h1Ref} className="overflow-hidden p-5 text-8xl text-neutral-800">
         Shaik Raiyan
       </h1>
     </div>

@@ -26,7 +26,8 @@ function FourNavBar() {
     <>
       <div
         id="nav"
-        className="flex items-center justify-between bg-black fixed top-0 left-0 w-full h-18 font-[600] px-10">
+        className="fixed top-0 left-0 flex h-18 w-full items-center justify-between bg-black px-10 font-[600]"
+      >
         <h2 ref={left} className="text-2xl">
           Shaik Raiyan
         </h2>
@@ -38,7 +39,9 @@ function FourNavBar() {
         </div>
       </div>
 
-      <h1 className="text-8xl font-semibold p-50">Shaik Raiyan</h1>
+      <h1 className="p-50 text-8xl font-semibold text-neutral-700">
+        Shaik Raiyan
+      </h1>
     </>
   );
 }

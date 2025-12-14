@@ -64,11 +64,12 @@ function NineCursorChange({ mainRef }) {
     <>
       <div
         ref={cursorRef}
-        className="size-[20px] rounded-full bg-emerald-300 fixed top-0 left-0 pointer-events-none text-black flex justify-center items-center">
+        className="pointer-events-none fixed top-0 left-0 flex size-[20px] items-center justify-center rounded-full bg-neutral-700 text-black"
+      >
         <span ref={textRef} className=""></span>
       </div>
       {/* this will always be below cursor so when clicked we click this cursor so we use pointer-events-none to click through */}
-      <div className="h-screen flex justify-center items-center">
+      <div className="flex h-screen items-center justify-center">
         <img
           ref={imgRef}
           src="https://wallpaperaccess.com/full/8296876.png"

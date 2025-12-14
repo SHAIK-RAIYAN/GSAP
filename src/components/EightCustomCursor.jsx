@@ -31,7 +31,8 @@ function EightCustomCursor({ mainRef }) {
   return (
     <div
       ref={cursorRef}
-      className="size-[20px] rounded-full bg-emerald-300 fixed top-0 left-0 pointer-events-none"></div>
+      className="pointer-events-none fixed top-0 left-0 size-[20px] rounded-full bg-neutral-700"
+    ></div>
     //this will always be below cursor so when clicked we click this cursor
     //so we use pointer-events-none to click through
   );

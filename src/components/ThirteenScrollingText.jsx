@@ -60,7 +60,7 @@ function ThirteenScrollingText() {
   );
 
   return (
-    <div>
+    <div className="bg-neutral-900">
       <div id="page1" className="min-h-screen"></div>
       <div id="page2" className="min-h-screen overflow-hidden">
         <div
