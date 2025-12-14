@@ -13,6 +13,10 @@ const HomePage = () => {
   const cardsRef = useRef([]);
 
   useLayoutEffect(() => {
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+
     const ctx = gsap.context(() => {
       const wrapper = wrapperRef.current;
       //Calculate how far we need to scroll. width of cards + width of screen (to push it fully off-screen)
@@ -66,7 +70,18 @@ const HomePage = () => {
       });
     }, containerRef);
 
-    return () => ctx.revert(); // Cleanup
+    // saving scroll
+    const savedScroll = sessionStorage.getItem("gallery_scroll_pos");
+    if (savedScroll) {
+      window.scrollTo(0, parseFloat(savedScroll));
+      ScrollTrigger.refresh();
+    }
+
+    return () => {
+      // Cleanup
+      sessionStorage.setItem("gallery_scroll_pos", window.scrollY);
+      ctx.revert();
+    };
   }, []);
 
   return (
