@@ -27,10 +27,9 @@ function App() {
     lenis.raf(time * 1000);
   });
   gsap.ticker.lagSmoothing(0);
+
   return (
-    <main
-      ref={mainRef}
-      className=" bg-[#111] text-white min-h-screen scroll-smooth">
+    <main ref={mainRef} className="min-h-screen text-white">
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/two-boxes" element={<TwoboxesAnimate />} />
